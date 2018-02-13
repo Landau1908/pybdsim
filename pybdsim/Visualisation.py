@@ -1,4 +1,4 @@
-import Data as _Data
+from . import Data as _Data
 import pylab as _pl
 
 class Helper : 
@@ -25,7 +25,7 @@ class Helper :
             zCentre = (self.z.max()+self.z.min())/2.0
 
        
-        print "Visualisation.Helper.getWorldCentre>",xCentre,yCentre,zCentre
+        print("Visualisation.Helper.getWorldCentre>",xCentre,yCentre,zCentre)
         return _pl.array([xCentre,yCentre,zCentre])
 
     def findComponentCoords(self, componentName) :
@@ -39,7 +39,7 @@ class Helper :
         # loop over names 
         for name in names : 
             if name.rfind(componentName) != -1 : 
-                print 'Visualisation.Helper.findComponentCoords>',name,idx
+                print('Visualisation.Helper.findComponentCoords>',name,idx)
                 matchingNames.append(name)
                 matchingIdx.append(idx)
             idx = idx+1
@@ -52,7 +52,7 @@ class Helper :
             z   = self.z[idx]
             v   = _pl.array([x,y,z]) 
             vp  = v - self.worldCentre
-            print match,idx,v,vp
+            print(match,idx,v,vp)
             
     def draw(self) : 
         '''Quick survey drawing for diagnostic reasons'''

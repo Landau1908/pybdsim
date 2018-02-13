@@ -3,7 +3,8 @@ import subprocess
 import uuid
 import pybdsim.Data
 
-import _General
+from . import _General
+
 
 class ExecOptions(dict):
     def __init__(self,*args,**kwargs):
@@ -120,8 +121,8 @@ class Study(object):
         for k,v in eo.GetExecArgs().iteritems():
             command += ' --' + str(k) + '=' + str(v)
         if debug:
-            print 'Command is'
-            print command
+            print('Command is')
+            print(command)
 
         # send it to a log file
         outfilename = 'output'
@@ -131,11 +132,11 @@ class Study(object):
         
         # execute process
         if debug:
-            print 'BDSIM Run'
+            print('BDSIM Run')
         try:
             subprocess.check_call(command, shell=True)
         except subprocess.CalledProcessError:
-            print 'ERROR'
+            print('ERROR')
             return
         
         # get output file name - the latest file in the directory hopefully

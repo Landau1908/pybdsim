@@ -36,7 +36,7 @@ def ZeroMissingRequiredColumns(tfsinstance):
                                    for col in missingColumns])
     msg = ("Columns missing from TFS: {}.  All have been set"
            " to zero.").format(missingColsString)
-    print msg
+    print(msg)
 
 
 def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
@@ -178,7 +178,7 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
             particleName = madx.header['PARTICLE']
             if particleName == "ELECTRON":
                 flipmagnets = True
-                print 'Detected electron in TFS file - changing flipmagnets to True'
+                print('Detected electron in TFS file - changing flipmagnets to True')
 
 
     # If we have collimators but no collimator dict then inform that
@@ -214,8 +214,8 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
         # deep copy as otherwise allelementdict gets irreperably changed!
         kws = _deepcopy(allelementdict)
         if verbose:
-            print 'starting key word arguments from all element dict'
-            print kws
+            print('starting key word arguments from all element dict')
+            print(kws)
         
         if aperModel != None:
             kws.update(aperModel)
@@ -243,28 +243,28 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
             kws.update(userdict[rname])
 
         if verbose:
-            print 'Full set of key word arguments:'
-            print kws
+            print('Full set of key word arguments:')
+            print(kws)
 
         if t == 'DRIFT':
             a.AddDrift(rname,l,**kws)
         elif t == 'HKICKER':
             if verbose:
-                print 'HICKER',rname
+                print('HICKER',rname)
             hkick = item['HKICK'] * factor
             if not zerolength:
                 kws['l'] = l
             a.AddHKicker(rname,hkick=hkick,**kws)
         elif t == 'VKICKER':
             if verbose:
-                print 'VKICKER',rname
+                print('VKICKER',rname)
             vkick = item['VKICK'] * factor
             if not zerolength:
                 kws['l'] = l
             a.AddVKicker(rname,vkick=vkick,**kws)
         elif t == 'KICKER':
             if verbose:
-                print 'KICKER',rname
+                print('KICKER',rname)
             hkick = item['HKICK'] * factor
             vkick = item['VKICK'] * factor
             if not zerolength:
@@ -272,7 +272,7 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
             a.AddKicker(rname,hkick=hkick,vkick=vkick,**kws)
         elif t == 'TKICKER':
             if verbose:
-                print 'TKICKER',rname
+                print('TKICKER',rname)
             hkick = item['HKICK'] * factor
             vkick = item['VKICK'] * factor
             if not zerolength:
@@ -283,7 +283,7 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
             if zerolength and not ignorezerolengthitems:
                 a.AddMarker(rname)
                 if verbose:
-                    print name,' -> marker instead of instrument'
+                    print(name,' -> marker instead of instrument')
             else:
                 a.AddDrift(rname,l,**kws)
         elif t == 'MARKER':
@@ -294,7 +294,7 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
             if zerolength and not ignorezerolengthitems:
                 a.AddMarker(rname)
                 if verbose:
-                    print name,' -> marker instead of monitor'
+                    print(name,' -> marker instead of monitor')
             else:
                 a.AddDrift(rname,l,**kws)
         elif t == 'MULTIPOLE':
@@ -320,7 +320,7 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
             elif zerolength and not ignorezerolengthitems:
                 a.AddMarker(rname)
                 if verbose:
-                    print name,' -> marker instead of multipole'
+                    print(name,' -> marker instead of multipole')
             else:
                 a.AddDrift(rname,l,**kws)
         elif t == 'OCTUPOLE':
@@ -333,7 +333,7 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
             if zerolength:
                 a.AddMarker(rname)
                 if verbose:
-                    print name,' -> marker instead of placeholder'
+                    print(name,' -> marker instead of placeholder')
             else:
                 a.AddDrift(rname,l,**kws)
         elif t == 'QUADRUPOLE':
@@ -386,7 +386,7 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
                     xsize           = colld['xsize']
                     ysize           = colld['ysize']
                     if verbose:
-                        print 'collimator xsize ',xsize
+                        print('collimator xsize ',xsize)
                     #if xsize > 0.1 or ysize > 0.1:
                     kws['outerDiameter'] = max(xsize,ysize)*2.5
                     if t == 'RCOLLIMATOR':
@@ -439,12 +439,12 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
         elif t == 'TKICKER':
             a.AddDrift(rname,l,**kws)
         else:
-            print 'unknown element type:', t, 'for element named: ', name
+            print('unknown element type:', t, 'for element named: ', name)
             if zerolength and not ignorezerolengthitems:
-                print 'putting marker in instead as its zero length'
+                print('putting marker in instead as its zero length')
                 a.AddMarker(rname)
             else:
-                print 'putting drift in instead as it has a finite length'
+                print('putting drift in instead as it has a finite length')
                 a.AddDrift(rname,l)
     # end of utility conversion function
 
@@ -461,7 +461,7 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
         if verbose:
             aperturedict.ReportPopulations()
     if verbose:
-        print 'Using pymadx.Apeture instance? --> ',useTfsAperture
+        print('Using pymadx.Apeture instance? --> ',useTfsAperture)
 
     # keep list of omitted zero length items
     itemsomitted = []
@@ -473,13 +473,13 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
         l    = item['L']
         zerolength = True if item['L'] < 1e-9 else False
         if verbose:
-            print 'zerolength? ',str(name).ljust(20),str(l).ljust(20),' ->',zerolength
+            print('zerolength? ',str(name).ljust(20),str(l).ljust(20),' ->',zerolength)
         if madx.ElementPerturbs(item):
             pass #ie proceed normally
         elif zerolength and ignorezerolengthitems:
             itemsomitted.append(name)
             if verbose:
-                print 'skipping this item'
+                print('skipping this item')
             continue # skip this item in the for loop
         
         # now deal with aperture
@@ -492,13 +492,13 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
             should = False
             if should:
                 if verbose:
-                    print 'Splitting item based on aperture'
+                    print('Splitting item based on aperture')
                 ls = _np.array(lengths)
                 if abs(_np.array(lengths).sum() - l) > 1e-6 or (ls < 0).any():
-                    print 'OH NO!!!'
-                    print l
-                    print lengths
-                    print apers
+                    print('OH NO!!!')
+                    print(l)
+                    print(lengths)
+                    print(apers)
                     return
                 # we should split this item up
                 # add it first to the raw machine
@@ -509,7 +509,7 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
                     # append the right fraction with the appropriate aperture
                     # to the 'b' machine
                     apermodel = _Builder.PrepareApertureModel(aper, defaultAperture)
-                    print apermodel
+                    print(apermodel)
                     AddSingleElement(lastelement*(splitLength/l), b, apermodel)
             #else:
                 #apermodel = _Builder.PrepareApertureModel(apers[0],defaultAperture)
@@ -519,7 +519,7 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
             AddSingleElement(item, b, apermodel)
             #    print len(b)
         elif usemadxaperture and name not in aperturedict:
-            print 'Using aperture in madx tfs file'
+            print('Using aperture in madx tfs file')
             apermodel = _Builder.PrepareApertureModel(item, defaultAperture)
             AddSingleElement(item, a, apermodel)
             AddSingleElement(item, b, apermodel)
@@ -555,16 +555,16 @@ def MadxTfs2Gmad(tfs, outputfilename, startname=None, stopname=None, stepsize=1,
     b.Write(outputfilename, overwrite=overwrite)
     if verbose:
         a.Write(outputfilename + "_raw", overwrite=overwrite)
-        print 'Total length: ',a.GetIntegratedLength()
-        print 'Total angle:  ',a.GetIntegratedAngle()
-        print 'items omitted: '
-        print itemsomitted
-        print 'number of omitted items: ',len(itemsomitted)
+        print('Total length: ',a.GetIntegratedLength())
+        print('Total angle:  ',a.GetIntegratedAngle())
+        print('items omitted: ')
+        print(itemsomitted)
+        print('number of omitted items: ',len(itemsomitted))
 
     return b,a,itemsomitted
 
 def MadxTfs2GmadBeam(tfs, startname=None, verbose=False):
-    print 'Warning - using automatic generation of input beam distribution from madx tfs file - PLEASE CHECK!'
+    print('Warning - using automatic generation of input beam distribution from madx tfs file - PLEASE CHECK!')
 
     if startname is None:
         startindex = 0
@@ -589,10 +589,10 @@ def MadxTfs2GmadBeam(tfs, startname=None, verbose=False):
     sigmat   = float(tfs.header['SIGT'])
 
     if ex == 1:
-        print 'Horizontal emittance of 1 is too large - setting to 1e-9'
+        print('Horizontal emittance of 1 is too large - setting to 1e-9')
         ex = 1e-9
     if ey == 1:
-        print 'Horizontal emittance of 1 is too large - setting to 1e-9'
+        print('Horizontal emittance of 1 is too large - setting to 1e-9')
         ey = 1e-9
     
     data = tfs[startindex]
@@ -606,8 +606,8 @@ def MadxTfs2GmadBeam(tfs, startname=None, verbose=False):
 
     #print particle,energy,gamma,ex,ey
     if verbose:
-        print 'beta_x: ',data['BETX'],'alpha_x: ',data['ALFX'],'mu_x: ',data['MUX']
-        print 'beta_y: ',data['BETY'],'alpha_y: ',data['ALFY'],'mu_y: ',data['MUY']
+        print('beta_x: ',data['BETX'],'alpha_x: ',data['ALFX'],'mu_x: ',data['MUX'])
+        print('beta_y: ',data['BETY'],'alpha_y: ',data['ALFY'],'mu_y: ',data['MUY'])
 
     #gammax = (1.0+data['ALFX'])/data['BETX']
     #gammay = (1.0+data['ALFY'])/data['BETY']

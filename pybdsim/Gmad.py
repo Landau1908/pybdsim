@@ -10,7 +10,10 @@ from ctypes.util import find_library as _find_library
 import os as _os
 import numpy as _np
 import matplotlib.pyplot as _plt
-import StringIO as _StringIO
+try:
+    from StringIO import StringIO as _StringIO
+except ImportError:
+    from io import StringIO as _StringIO
 import re as _re
 
 class Survey(object):
@@ -37,7 +40,7 @@ class Survey(object):
             self.Load(filename)
 
     def Load(self, filename):
-        print 'Warning - we must check the sign of angle so dx has correct sign'
+        print('Warning - we must check the sign of angle so dx has correct sign')
         self._file = Lattice(filename)
 
         for e in self._file.lattice:
@@ -63,8 +66,8 @@ class Survey(object):
     def FinalDiff(self):
         dz = self._z_current - self._beamline[0][0][1]
         dx = self._x_current - self._beamline[0][1][1]
-        print 'Final dz ',dz,'m'
-        print 'Final dx ',dx,'m'
+        print('Final dz ',dz,'m')
+        print('Final dx ',dx,'m')
 
     def Plot(self):
         _plt.figure()
@@ -75,7 +78,7 @@ class Survey(object):
         _plt.show()
 
     def CompareMadX(self, fileName):
-        print 'NOT WORKING - TBC'
+        print('NOT WORKING - TBC')
         return
         import pymadx as _pymadx
 
@@ -93,7 +96,7 @@ class Survey(object):
         xdiff = _np.array(self._x_coords)-coord[0]
         ydiff = _np.array(self._y_coords)-coord[1]
         d     = _np.sqrt(xdiff**2+ydiff**2)
-        print arr[d == min(d)]
+        print(arr[d == min(d)])
 
 
 def _LoadLib():
@@ -137,7 +140,7 @@ def _LoadLib():
 
     tests = [test0,test1,test2,test3]
     if tests.count(True) == 0:
-        print 'LoadLib - cannot find libgmadShared - check paths'
+        print('LoadLib - cannot find libgmadShared - check paths')
         raise OSError('LoadLib - cannot find libgmadShared - check paths')
     else:
         parserlib.GetNElements.restype   = _ctypes.c_int
@@ -354,7 +357,7 @@ class Lattice(object):
 
     def Print(self,includeheaderlines=True):
         s = self._GenerateReprString(includeheaderlines)
-        print s
+        print(s)
 
     def PrintZeroLength(self,includeheaderlines=True) :
         """
@@ -378,7 +381,7 @@ class Lattice(object):
                 s += str(round(e['SPosStart'],5)).ljust(15)
                 s += str(round(e['SPosEnd']  ,5)).ljust(15)
                 s += '\n'
-        print s
+        print(s)
 
     def IndexFromNearestS(self, S):
         """

@@ -89,7 +89,7 @@ def MadxVsBDSIM(tfs, bdsim, survey=None, functions=None,
                 tfsname, bdsname)
             d['CreationDate'] = datetime.datetime.today()
 
-        print "Written ", output_filename
+        print("Written ", output_filename)
 
 def MadxVsBDSIMOrbit(tfs, bdsim, survey=None, functions=None, postfunctions=None):
 
@@ -130,7 +130,7 @@ def PrepareResiduals(tfs, bds, survey=None, verbose=False):
     for s in bdss:
         ind = tfsinst.IndexFromNearestS(s)
         if (verbose):
-            print 'bdsim s:',s,' index in tfs:',ind, tfsinst[ind]
+            print('bdsim s:',s,' index in tfs:',ind, tfsinst[ind])
         for key in keys:
             tfsdata[key].append(tfsinst[ind][key])
 
@@ -239,7 +239,7 @@ def PlotBetas(tfsopt, bdsopt, survey=None, functions=None, postfunctions=None, f
     axes.set_xlabel('S / m')
     axes.legend(loc='best')
 
-    print "survey =", survey
+    print("survey =", survey)
 
     _CallUserFigureFunctions(functions)
     _AddSurvey(betaPlot, survey)

@@ -128,10 +128,10 @@ def BdsimPrimaries2Mad8(inputfile,outfile,start=0, ninrays=-1):
 def _LoadBdsimPrimaries(inputfile, start, ninrays):
     c = 299792458.0     #speed of light in vacuum        
     
-    print "Loading input file: ", inputfile
+    print("Loading input file: ", inputfile)
     rootin      = _rt.TFile(inputfile)
     if (rootin.IsZombie()):
-        print "No such file. Terminating..."
+        print("No such file. Terminating...")
         sys.exit(1)
         
     tree        = rootin.Get("Event")

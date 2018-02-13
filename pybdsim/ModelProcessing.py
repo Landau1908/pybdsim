@@ -11,9 +11,9 @@ versions of them.
 
 """
 
-import _General
-import Gmad as _Gmad
-import Builder as _Builder
+from . import _General
+from . import Gmad as _Gmad
+from . import Builder as _Builder
 
 import time as _time
 
@@ -76,7 +76,7 @@ def WrapLatticeAboutItem(maingmadfile, itemname, outputfilename):
     try:
         ind = seq.index(itemname)
     except ValueError:
-        print 'Error - ',itemname,'is not in the supplied lattice'
+        print('Error - ',itemname,'is not in the supplied lattice')
         return
 
     newseq = seq[ind:] + seq[:ind]

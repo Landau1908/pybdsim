@@ -7,7 +7,7 @@
 Useful plots for bdsim output
 
 """
-import Data as _Data
+from . import Data as _Data
 import pymadx as _pymadx
 
 import matplotlib as _matplotlib
@@ -16,7 +16,7 @@ import matplotlib.patches as _patches
 import numpy as _np
 import string as _string
 
-from _General import CheckItsBDSAsciiData as _CheckItsBDSAsciiData
+from ._General import CheckItsBDSAsciiData as _CheckItsBDSAsciiData
 
 class _My_Axes(_matplotlib.axes.Axes):
     """
@@ -121,7 +121,7 @@ def AddMachineLatticeFromSurveyToFigure(figure, *args, **kwargs):
 
     def Click(a) : 
         if a.button == 3 : 
-            print 'Closest element: ',sf.NameFromNearestS(a.xdata)
+            print('Closest element: ',sf.NameFromNearestS(a.xdata))
             
     MachineXlim(axmachine)
     axmachine.callbacks.connect('xlim_changed', MachineXlim)

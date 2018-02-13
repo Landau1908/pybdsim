@@ -1,5 +1,5 @@
-from _MadxBdsimComparison import *
-from _TransportBdsimComparison import TransportVsBDSIM
+from ._MadxBdsimComparison import *
+from ._TransportBdsimComparison import TransportVsBDSIM
 
 try:
     import pymad8 as _pymad8
@@ -10,7 +10,7 @@ except ImportError:
     warnings.warn(msg)
     del warnings
 
-from _BdsimBdsimComparison import BDSIMVsBDSIM
+from ._BdsimBdsimComparison import BDSIMVsBDSIM
 
 try :
     import pysad as _pysad

@@ -14,8 +14,8 @@ Data - read various output files
 
 """
 import numpy as _np
-import Constants as _Constants
-import _General
+from . import Constants as _Constants
+from . import _General
 import os as _os
 
 useRootNumpy = True
@@ -43,11 +43,11 @@ def Load(filepath):
             #raise error rather than return None, saves later scripting errors.
             raise IOError('Root loader not available.')
     elif extension == 'dat':
-        print '.dat file - trying general loader'
+        print('.dat file - trying general loader')
         try:
             return _LoadAscii(filepath)
         except:
-            print "Didn't work"
+            print("Didn't work")
             raise IOError("Unknown file type - not BDSIM data")
     else:
         raise IOError("Unknown file type - not BDSIM data")
@@ -241,7 +241,7 @@ class BDSAsciiData(list):
             a.extend(filtereddata)
             return a
         else:
-            print "The parameter: ",parametername," does not exist in this instance"
+            print("The parameter: ",parametername," does not exist in this instance")
 
     def Filter(self,booleanarray):
         """
