@@ -12,6 +12,7 @@ BDSIMDistributionTypes = [
     'ptc',
     'halo',
     'userfile',
+    'gaussmatrix',
 ]
 
 BDSIMParticleTypes = [
