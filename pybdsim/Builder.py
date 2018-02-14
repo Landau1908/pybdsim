@@ -58,6 +58,7 @@ bdsimcategories = [
     'degrader',
     'shield',
     'gap',
+    'placement',
     ]
 
 class ElementBase(dict):
@@ -466,7 +467,8 @@ class Machine:
             if self.verbose:
                 print("Element of name: ",object.name," already defined, simply adding to sequence")
         #finally add it to the sequence
-        self.sequence.append(object.name)
+        if object.category is not "placement":
+            self.sequence.append(object.name)
 
         self.length += object.length
         self.lenint.append(self.length)
@@ -636,7 +638,7 @@ class Machine:
         
     def AddRCol(self, name='rc', length=0.1, xsize=0.1, ysize=0.1, **kwargs):
         d = {}
-        for k,v in kwargs.iteritems():
+        for k,v in kwargs.items():
             if 'aper' not in str(k).lower():
                 d[k] = v
         self.Append(Element(name,'rcol',l=length,xsize=xsize,ysize=ysize,**d))
@@ -671,7 +673,7 @@ class Machine:
 
     def AddECol(self, name='ec', length=0.1, xsize=0.1, ysize=0.1, **kwargs):
         d = {}
-        for k,v in kwargs.iteritems():
+        for k,v in kwargs.items():
             if 'aper' not in str(k).lower():
                 d[k] = v
         self.Append(Element(name,'ecol',l=length,xsize=xsize,ysize=ysize,**d))
@@ -690,6 +692,14 @@ class Machine:
 
     def AddElement(self, name='el', length=0.1, outerDiameter=1, geometryFile="geometry.gdml", **kwargs):
         self.Append(Element(name, 'element',l=length,outerDiameter=outerDiameter,geometryFile=geometryFile, **kwargs))
+
+    def AddPlacement(self, name='pl', geometryFile="gdml:geometry.gdml",
+                     phi=0.0, psi=0.0, theta=0.0,
+                     x=0.0, y=0.0, z=0.0,
+                     **kwargs):
+        self.Append(Element(name, 'placement', geometryFile="gdml:" + geometryFile,
+                            psi=psi, phi=phi, theta=theta,
+                            x=x, y=y, z=z, **kwargs))
 
     def AddGap(self, name='gp', length=1.0, **kwargs):
         self.Append(Element(name, 'gap', l=length, **kwargs))
