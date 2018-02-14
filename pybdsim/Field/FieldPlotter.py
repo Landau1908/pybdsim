@@ -1,7 +1,7 @@
 import matplotlib.pyplot as _plt
 import numpy as _np
 
-import pybdsim
+#import pybdsim
 
 class FourDData(object):
     def __init__(self, filename, xind=0, yind=1, zind=2, tind=3):

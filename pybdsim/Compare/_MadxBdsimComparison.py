@@ -1,5 +1,5 @@
 import pymadx as _pymadx
-import pybdsim as _pybdsim
+#from .. import pybdsim as _pybdsim
 import matplotlib.pyplot as _plt
 import numpy as _np
 from os.path import isfile

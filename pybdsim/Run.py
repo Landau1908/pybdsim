@@ -1,7 +1,7 @@
 import os
 import subprocess
 import uuid
-import pybdsim.Data
+from . import Data
 
 from . import _General
 

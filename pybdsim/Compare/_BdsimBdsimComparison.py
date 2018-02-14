@@ -10,8 +10,8 @@ seven in one go.
 import os.path as _path
 import matplotlib.pyplot as _plt
 
-import pybdsim.Data
-import pybdsim.Plot
+from .. import Data
+from .. import Plot
 
 # Predefined lists of tuples for making the standard plots,
 # format = (optical_var_name, optical_var_error_name, legend_name)

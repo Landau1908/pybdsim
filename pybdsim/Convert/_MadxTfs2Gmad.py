@@ -6,7 +6,7 @@ import warnings as _warnings
 from .. import Builder as _Builder
 from ..Options import Options as _Options
 from .. import Beam as _Beam
-import pybdsim._General
+from .. import _General
 from .. import XSecBias
 
 _requiredKeys = frozenset([

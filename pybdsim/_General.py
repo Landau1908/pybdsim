@@ -8,7 +8,7 @@ General utilities for day to day housekeeping
 
 import glob
 import os
-import pybdsim.Data
+from . import Data
 import re as _re
 import numpy as _np
 
