@@ -10,7 +10,8 @@ BDSIMDistributionTypes = [
     'eshell',
     'ring',
     'ptc',
-    'halo'
+    'halo',
+    'userfile',
 ]
 
 BDSIMParticleTypes = [
@@ -40,7 +41,7 @@ class Beam(dict) :
             raise ValueError("Unknown distribution type: '"+str(distrtype)+"'")
         
         self['distrType'] = '"' + distrtype + '"'
-        if distrtype == 'reference':
+        if distrtype == 'reference' or distrtype == 'userfile':
             pass
         elif distrtype == 'gauss':
             setattr(self, 'SetSigmaX',     self._SetSigmaX)
