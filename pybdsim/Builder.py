@@ -80,7 +80,7 @@ class ElementBase(dict):
 
     def __Update(self,d):
         dict.update(d)
-        for key,value in d.iteritems():
+        for key,value in d.items():
             if value == "" :
                 continue
             if type(value) == tuple and self._isMultipole:
