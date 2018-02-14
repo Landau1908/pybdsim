@@ -452,7 +452,7 @@ class Machine:
         """
         return self.length
 
-    def Append(self,object):
+    def Append(self, object):
         if type(object) not in (Element,Line):
             raise TypeError("Only Elements or Lines can be added to the machine")
         elif object.name not in self.elementsd.keys():
