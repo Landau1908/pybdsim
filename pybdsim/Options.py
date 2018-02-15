@@ -69,7 +69,7 @@ class Options(dict):
             return s
         
         numOptions=0
-        for k,v in self.iteritems():
+        for k,v in self.items():
             s += ', \n\t'+str(k)+'='+str(v)
             numOptions += 1
         s += ';'

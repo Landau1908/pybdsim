@@ -478,13 +478,13 @@ class Machine:
 
         # update energy if correct element category and has finite length.
         if object.category in elementsSR and object.length > 0:
-            if object.has_key('angle'):
+            if 'angle' in object:
                 ang = object['angle']
                 if type(ang) == tuple:
                     ang = ang[0]
                 else:
                     ang = ang
-            elif object.has_key('B'):
+            elif 'B' in object:
                 # Assume a beam instance has been added to machine...
                 if (self.beam['particle'] == "e-") or (self.beam['particle'] == "e+"):
                     pMass = 0.000511
